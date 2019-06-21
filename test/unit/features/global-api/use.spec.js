@@ -34,7 +34,7 @@ describe('Global API: use', () => {
     expect(Ctor.options.directives['plugin-test']).toBe(def)
   })
 
-  // Github issue #5970
+  // GitHub issue #5970
   it('should work on multi version', () => {
     const Ctor1 = Vue.extend({})
     const Ctor2 = Vue.extend({})
@@ -48,5 +48,10 @@ describe('Global API: use', () => {
     Ctor2.use(pluginStub, options)
     expect(Vue.options.directives['plugin-test']).toBeUndefined()
     expect(Ctor2.options.directives['plugin-test']).toBe(def)
+  })
+
+  // #8595
+  it('chain call', () => {
+    expect(Vue.use(() => {})).toBe(Vue)
   })
 })
